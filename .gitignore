@@ -1,0 +1,7 @@
+backend-venv/
+.env
+*.sqlite3
+*.http
+property_images/
+__pycache__/
+migrations/
