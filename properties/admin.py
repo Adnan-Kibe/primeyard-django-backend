@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import Property, Image, Inquires
+from .models import Property, Image, Inquiries
 
 class ImageInline(admin.TabularInline):
     model = Image
     extra = 1
 
 class InquiresInline(admin.StackedInline):
-    model = Inquires
+    model = Inquiries
 
 class PropertyAdmin(admin.ModelAdmin):
     inlines = [ImageInline, InquiresInline] 

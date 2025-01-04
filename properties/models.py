@@ -15,14 +15,27 @@ class Image(models.Model):
 
     def __str__(self):
         return self.image.name
+    
+class Agent(models.Model):
+    agent_id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
 
+    class Meta:
+        ordering = ['name']
 
+    def __str__(self):
+        return self.name
+    
 class Property(models.Model):
     property_id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="properties")
+    agent = models.ForeignKey(Agent, on_delete=models.CASCADE, related_name="properties")
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=200)
     description = models.TextField()
+    amenities = models.JSONField()
     price = models.DecimalField(max_digits=1000, decimal_places=2)
     bedrooms = models.IntegerField()
     bathrooms = models.IntegerField()
@@ -40,8 +53,9 @@ class Property(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.address}"
+
     
-class Inquires(models.Model):
+class Inquiries(models.Model):
     inquire_id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="inquiries")
     name = models.CharField(max_length=100)

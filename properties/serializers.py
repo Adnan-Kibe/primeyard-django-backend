@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Property, Image, Inquires
+from .models import Property, Image, Inquiries
 from main.serializers import UserSerializer
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -9,7 +9,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class InquireSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Inquires
+        model = Inquiries
         fields = ("inquire_id", "property", "name", "email", "phone", "message")
 
 class PropertySerializer(serializers.ModelSerializer):

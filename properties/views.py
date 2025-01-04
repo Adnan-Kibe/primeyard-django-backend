@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import Property, Inquires
+from .models import Property, Inquiries
 from .permissions import IsOwner
 from .serializers import PropertySerializer, InquireSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
@@ -29,10 +29,10 @@ class PropertyDetailView(generics.RetrieveUpdateDestroyAPIView):
         return super().get_permissions()
 
 class InquireAPIView(generics.CreateAPIView):
-    queryset = Inquires.objects.all()
+    queryset = Inquiries.objects.all()
     serializer_class = InquireSerializer
 
 class InquireDetailView(generics.RetrieveDestroyAPIView):
-    queryset = Inquires.objects.all()
+    queryset = Inquiries.objects.all()
     serializer_class = InquireSerializer
     permission_classes = [IsAuthenticated]

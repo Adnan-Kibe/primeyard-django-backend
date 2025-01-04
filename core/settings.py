@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
 from decouple import config
@@ -34,7 +35,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "main",
     "properties",
-    "payment",
     'corsheaders',
     "rest_framework",
     'rest_framework_simplejwt',
@@ -84,8 +84,12 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("DB_NAME"),  
+        "USER": config("DB_USER"),  
+        "PASSWORD": config("DB_PASSWORD"),   
+        "HOST": config("DB_HOST"),           
+        "PORT": config("DB_PORT"),                
     }
 }
 
@@ -184,6 +188,16 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
-
 CORS_ALLOW_CREDENTIALS = True
 
+# Media settings
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'property_images')
+
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
