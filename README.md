@@ -23,3 +23,15 @@ Configure the database connection details. Update the following fields:
 `DB_HOST`: Host address for the database server (usually localhost for local development).
 
 `DB_PORT`: Port number for the database server (default is 5432).
+
+## Running the Application
+
+To start the application, run the following command:
+
+> python manage.py runserver
+
+## Adding a superuser
+
+To create a superuser, run the following command:
+
+> python manage.py createsuperuser
