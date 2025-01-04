@@ -15,7 +15,11 @@ Update the `.env` File with the Following Keys Add the following key-value pairs
 Configure the database connection details. Update the following fields:
 
 `DB_NAME`: Name of your PostgreSQL database.
+
 `DB_USER`: PostgreSQL username.
+
 `DB_PASSWORD`: PostgreSQL password.
+
 `DB_HOST`: Host address for the database server (usually localhost for local development).
+
 `DB_PORT`: Port number for the database server (default is 5432).
